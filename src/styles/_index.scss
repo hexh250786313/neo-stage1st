@@ -1,0 +1,7 @@
+/**
+ * 实际文件有下滑线前缀，导入的时候没有
+ * 下滑线文件表示不会直接被编译为 xxx.css 文件，只用于导入，也就是组织/模块化的一种约定方式
+ * 这是 sass 的最佳实践
+/*  */
+@forward './variables/auto-generated';
+@forward './mixins';

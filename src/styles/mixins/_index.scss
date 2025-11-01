@@ -1,0 +1,6 @@
+// 智能折行，正常情况下单词单独折行，单词过长的情况下自动把单词内折行
+@mixin break-word {
+    /* stylelint-disable declaration-property-value-keyword-no-deprecated */
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
