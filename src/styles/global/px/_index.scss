@@ -1,0 +1,23 @@
+// 这个文件的作用是为了转换部分 node_modules 中使用了 css-in-js 技术引入的组件
+// 无法靠 pxTransform webpack 插件自动转换 px -> rem 的情况
+// 所以额外写一些样式覆盖掉默认样式
+
+// 写到 #app 中是为了增加选择器权重，确保覆盖成功
+#app {
+    taro-input-core {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    taro-button-core {
+        border-radius: 5px;
+        padding-left: 14px;
+        padding-right: 14px;
+        font-size: 18px;
+
+        &::after {
+            border: 1px solid rgb(0 0 0 / 20%);
+            border-radius: 10px;
+        }
+    }
+}

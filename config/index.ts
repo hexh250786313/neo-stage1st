@@ -8,9 +8,9 @@ import prodConfig from './prod';
 // export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
 export default defineConfig<'webpack5'>(async (merge) => {
     const baseConfig: UserConfigExport<'webpack5'> = {
-        projectName: 'neo',
+        projectName: 'neo-stage1st',
         date: '2025-10-2',
-        designWidth: 750,
+        designWidth: 375,
         deviceRatio: {
             640: 2.34 / 2,
             750: 1,
@@ -19,7 +19,11 @@ export default defineConfig<'webpack5'>(async (merge) => {
         },
         sourceRoot: 'src',
         outputRoot: 'dist',
-        plugins: ['@tarojs/plugin-generator', path.resolve(__dirname, './plugins/generate-variables')],
+        plugins: [
+            '@tarojs/plugin-generator',
+            path.resolve(__dirname, './plugins/generate-variables'),
+            '@tarojs/plugin-http',
+        ],
         defineConstants: {},
         copy: {
             patterns: [],
@@ -43,7 +47,7 @@ export default defineConfig<'webpack5'>(async (merge) => {
                     enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
                     config: {
                         namingPattern: 'module', // 转换模式，取值为 global/module
-                        generateScopedName: '[name]__[local]___[hash:base64:5]',
+                        generateScopedName: '[folder]__[local]___[hash:base64:5]',
                     },
                 },
             },
@@ -52,6 +56,9 @@ export default defineConfig<'webpack5'>(async (merge) => {
             },
         },
         h5: {
+            // 对于 @taro/components 等 taro 官方组件默认过滤，所以没有用，需要在下方 webpackChain 中改写 postcss 的 exclude 规则
+            // ref: https://github.com/NervJS/taro/blob/4e186a349f95b7ec7a192727a74b9d3f5efd1924/packages/taro-vite-runner/src/postcss/postcss.h5.ts
+            // esnextModules: ['taro-ui'],
             publicPath: '/',
             staticDirectory: 'static',
             output: {
@@ -72,12 +79,27 @@ export default defineConfig<'webpack5'>(async (merge) => {
                     enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
                     config: {
                         namingPattern: 'module', // 转换模式，取值为 global/module
-                        generateScopedName: '[name]__[local]___[hash:base64:5]',
+                        generateScopedName: '[folder]__[local]___[hash:base64:5]',
                     },
                 },
             },
             webpackChain(chain) {
                 chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin);
+
+                // 修改 postcss 规则，让它也处理 Taro 组件
+                chain.module
+                    .rule('postcss')
+                    .exclude.clear() // 清除默认的 exclude
+                    .add((filename: string) => {
+                        // 不再排除 Taro 组件，只排除其他 node_modules
+                        const isTaroModule =
+                            /@tarojs[/\\]components/.test(filename) || /\btaro-components\b/.test(filename);
+                        if (isTaroModule) {
+                            return false; // 不排除，需要处理
+                        }
+                        return filename.includes('node_modules'); // 排除其他 node_modules
+                    })
+                    .end();
             },
         },
         rn: {

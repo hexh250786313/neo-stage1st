@@ -1,0 +1,5 @@
+// 防止某些浏览器插件覆盖掉 fa 的字体文件
+
+[class*='fa-'] {
+    font-family: 'Font Awesome 6 Free', sans-serif !important;
+}

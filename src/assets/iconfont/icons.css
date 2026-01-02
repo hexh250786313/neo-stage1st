@@ -2,3 +2,19 @@
 .fa-home::before {
     content: '\f015';
 }
+
+.fa-bell::before {
+    content: '\f0f3';
+}
+
+.fa-user::before {
+    content: '\f007';
+}
+
+.fa-eye-slash::before {
+    content: '\f070';
+}
+
+.fa-eye::before {
+    content: '\f06e';
+}

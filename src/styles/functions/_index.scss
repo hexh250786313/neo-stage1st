@@ -1,0 +1,6 @@
+@use '../variables/auto-generated' as *;
+
+// 中等阴影
+@function shadow-md($color: $color-off) {
+    @return 0 2px 8px rgba($color, 0.1);
+}

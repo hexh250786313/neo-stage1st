@@ -1,0 +1,66 @@
+// 统一维护调色板
+$palette-vars: (
+    // 主题色 #cccc99
+    palette-brand: 204 204 153,
+
+    // 主要强调色 #ff5656
+    palette-special-0: 255 86 86,
+    // 次要强调色 #2b7acd
+    palette-special-1: 43 122 205,
+
+    // 主要错误色 #ff512c
+    palette-error-0: 255 81 44,
+    // 次要错误色 #ff9a9a
+    palette-error-1: 255 154 154,
+
+    // 按钮不可用时的文本颜色 #a8a59d
+    palette-button-fg-0: 168 165 157,
+    // 按钮可用时的文本颜色 #000
+    palette-button-fg-1: 0 0 0,
+
+    // 主要文本色 #333
+    palette-fg-0: 51 51 51,
+    // 次要文本色 #999
+    palette-fg-1: 153 153 153,
+    // 辅助文本色 #aaa
+    palette-fg-2: 170 170 170,
+
+    // 主要背景色 #f6f7eb
+    palette-bg-0: 246 247 235,
+    // 次要背景色 #d1d9c1
+    palette-bg-1: 209 217 193,
+
+    // 通常表示黑白两个常用相对色，不使用固定的 black 和 white 是
+    // 防止深色和浅色主题切换时出现语义矛盾的问题
+    // #fff
+    palette-base-0: 255 255 255,
+    // #000
+    palette-base-1: 0 0 0,
+
+    color-brand-primary: var(--palette-brand),
+    color-error-primary: var(--palette-error-0),
+    color-error-secondary: var(--palette-error-1),
+    color-text-primary: var(--palette-fg-0),
+    color-text-secondary: var(--palette-fg-1),
+    color-text-tertiary: var(--palette-fg-2),
+    color-bg-primary: var(--palette-bg-0),
+    color-bg-secondary: var(--palette-bg-1),
+    color-on: var(--palette-base-0),
+    color-off: var(--palette-base-1)
+);
+
+// 复用的 mixin
+@mixin palette-vars {
+    @each $name, $value in $palette-vars {
+        --#{$name}: #{$value};
+    }
+}
+
+// H5 与小程序共享
+:root {
+    @include palette-vars;
+}
+
+page {
+    @include palette-vars;
+}

@@ -1,6 +1,25 @@
+@use '../variables/auto-generated' as *;
+
 // 智能折行，正常情况下单词单独折行，单词过长的情况下自动把单词内折行
 @mixin break-word {
     /* stylelint-disable declaration-property-value-keyword-no-deprecated */
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin text-wrap {
     word-break: break-word;
     overflow-wrap: break-word;
 }

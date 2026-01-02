@@ -8,12 +8,18 @@
         <meta name="format-detection" content="telephone=no,address=no" />
         <meta name="apple-mobile-web-app-status-bar-style" content="white" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>neo</title>
+        <title>neo-stage1st</title>
         <script>
             <%= htmlWebpackPlugin.options.script %>
         </script>
     </head>
     <body>
+        <script id="initialHeight" strategy="beforeInteractive">
+            setTimeout(() => {
+                // document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + 'px';
+                window.initialHeight = document.documentElement.clientHeight;
+            }, 0);
+        </script>
         <div id="app"></div>
     </body>
 </html>

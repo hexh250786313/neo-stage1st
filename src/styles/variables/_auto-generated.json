@@ -1,0 +1,23 @@
+{
+    "color-brand-primary": "rgb(var(--color-brand-primary))",
+    "color-error-primary": "rgb(var(--color-error-primary))",
+    "color-error-secondary": "rgb(var(--color-error-secondary))",
+    "color-text-primary": "rgb(var(--color-text-primary))",
+    "color-text-secondary": "rgb(var(--color-text-secondary))",
+    "color-text-tertiary": "rgb(var(--color-text-tertiary))",
+    "color-bg-primary": "rgb(var(--color-bg-primary))",
+    "color-bg-secondary": "rgb(var(--color-bg-secondary))",
+    "color-on": "rgb(var(--color-on))",
+    "color-off": "rgb(var(--color-off))",
+    "size-space-xs": "4px",
+    "size-space-sm": "8px",
+    "size-space-md": "12px",
+    "size-space-lg": "24px",
+    "size-space-xl": "32px",
+    "size-text-xs": "12px",
+    "size-text-sm": "14px",
+    "size-text-base": "16px",
+    "size-text-md": "20px",
+    "size-text-lg": "24px",
+    "size-text-xl": "32px"
+}

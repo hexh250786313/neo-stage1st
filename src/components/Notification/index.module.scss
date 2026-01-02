@@ -1,0 +1,87 @@
+@use '@/styles/index.scss' as *;
+
+@mixin layer-container($z-index) {
+    z-index: $z-index;
+    position: fixed;
+    top: 20px;
+    left: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+    will-change: transform, opacity;
+
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+    }
+}
+
+.layer-backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: transparent;
+}
+
+.layer-panel {
+    position: relative;
+    background: $color-on;
+    padding: 12px 24px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgb(var(--color-off) / 10%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 12px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+
+    .hidden & {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@mixin icon-wrapper {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+@mixin icon-circle($color) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid $color;
+    border-radius: 50%;
+}
+
+@mixin layer-message {
+    color: $color-text-secondary;
+    font-size: 14px;
+    flex: 1;
+    line-height: 24px;
+}
+
+@keyframes scale-in {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

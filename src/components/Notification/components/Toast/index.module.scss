@@ -1,0 +1,77 @@
+@use '../../index.module.scss' as notice;
+
+.container {
+    @include notice.layer-container(1001);
+}
+
+.icon-wrapper {
+    @include notice.icon-wrapper;
+}
+
+.icon-circle {
+    @include notice.icon-circle($color-brand-primary);
+}
+
+@mixin icon {
+    position: absolute;
+    left: 50%;
+    width: 3px;
+    background: $color-brand-primary;
+    transform: translateX(-50%);
+}
+
+.icon-exclamation-line {
+    @include icon;
+
+    top: 20%;
+    height: 0;
+    transform-origin: top center;
+}
+
+.icon-exclamation-dot {
+    @include icon;
+
+    bottom: 20%;
+    height: 3px;
+    opacity: 0;
+}
+
+.container:not(.hidden) {
+    .icon-circle {
+        animation: scale-in 0.3s ease-out forwards;
+    }
+
+    .icon-exclamation-line {
+        animation: exclamation-line-grow 0.3s ease-out 0.3s forwards;
+    }
+
+    .icon-exclamation-dot {
+        animation: exclamation-dot-fade-in 0.3s ease-out 0.3s forwards;
+    }
+}
+
+.message {
+    @include notice.layer-message;
+}
+
+@keyframes exclamation-line-grow {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 35%;
+    }
+}
+
+@keyframes exclamation-dot-fade-in {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}

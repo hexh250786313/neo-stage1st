@@ -13,4 +13,4 @@ tsconfig-paths-webpack-plugin
 eslint-plugin-react
 eslint-plugin-react-hooks
 
-然后如果要更新 taro 依赖版本，先用 taro init neo 初始化一套默认 react+typescript 默认模板，看看 taro 的版本有没有更新 eslint 和 webpack 等
+然后如果要更新 taro 依赖版本，先用 taro init neo 初始化一套默认 react+typescript+github源默认模板，看看 taro 的版本有没有更新 eslint 和 webpack 等

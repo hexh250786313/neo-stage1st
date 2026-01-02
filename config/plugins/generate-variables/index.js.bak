@@ -1,0 +1,72 @@
+/* eslint-disable */
+const fs = require('fs');
+const path = require('path');
+const { parse } = require('jsonc-parser');
+
+module.exports = (ctx, options) => {
+    const generateVariablesFiles = () => {
+        const variablesPath = path.resolve(ctx.paths.sourcePath, 'styles/variables/variables.jsonc');
+        const scssOutputPath = path.resolve(ctx.paths.sourcePath, 'styles/variables/_auto-generated.scss');
+        const jsonOutputPath = path.resolve(ctx.paths.sourcePath, 'styles/variables/_auto-generated.json');
+
+        try {
+            if (!fs.existsSync(variablesPath)) {
+                console.log('⚠️  未找到 variables.jsonc 文件');
+                return;
+            }
+
+            // 读取 variables.jsonc
+            const fileContent = fs.readFileSync(variablesPath, 'utf-8');
+            const variables = parse(fileContent);
+
+            // 生成 SCSS 文件
+            let scssContent = '// 该文件由 variables.jsonc 自动生成，请勿手动修改\n\n';
+
+            for (const [key, value] of Object.entries(variables)) {
+                // 将驼峰命名转换为连字符命名
+                const scssVarName = key.replace(/([A-Z])/g, '-$1').toLowerCase();
+                scssContent += `$${scssVarName}: ${value};\n`;
+            }
+            fs.writeFileSync(scssOutputPath, scssContent, 'utf-8');
+            console.log('✅ _auto-generated.scss 生成成功');
+
+            // 生成 JSON 文件
+            const jsonContent = JSON.stringify(variables, null, 2);
+            fs.writeFileSync(jsonOutputPath, jsonContent, 'utf-8');
+            console.log('✅ _auto-generated.json 生成成功');
+        } catch (error) {
+            console.error('❌ 生成变量文件失败:', error);
+        }
+    };
+
+    // 注册钩子
+    ctx.register({
+        name: 'onBuildStart',
+        fn() {
+            console.log('🚀 开始生成样式变量文件...');
+            generateVariablesFiles();
+        },
+    });
+
+    // watch 模式监听
+    ctx.register({
+        name: 'onBuildFinish',
+        fn() {
+            if (!ctx._variablesWatcher) {
+                ctx._variablesWatcher = true;
+
+                const variablesPath = path.resolve(ctx.paths.sourcePath, 'styles/variables/variables.jsonc');
+
+                if (fs.existsSync(variablesPath)) {
+                    fs.watch(variablesPath, (eventType) => {
+                        if (eventType === 'change') {
+                            console.log('📝 检测到 variables.jsonc 变化，重新生成文件...');
+                            generateVariablesFiles();
+                        }
+                    });
+                    console.log('👀 已开启 variables.jsonc 文件监听');
+                }
+            }
+        },
+    });
+};

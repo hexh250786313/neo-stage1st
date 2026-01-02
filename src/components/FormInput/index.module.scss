@@ -1,0 +1,62 @@
+.form-group {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.label {
+    font-size: $size-text-sm;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #edf2f7;
+    border-radius: 8px;
+    background: $color-on;
+    display: flex;
+    align-items: center;
+    font-size: $size-text-sm;
+    transition:
+        border-color 0.2s,
+        background-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.input-focus {
+    border-color: $color-brand-primary;
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(var(--color-brand-primary) / 20%);
+}
+
+.input-error {
+    border-color: $color-error-primary !important;
+    background: rgb(var(--color-error-primary) / 5%) !important;
+}
+
+.input-error-focus {
+    border-color: $color-error-primary !important;
+    outline: none;
+    box-shadow: 0 0 0 2px rgb(var(--color-error-primary) / 20%);
+}
+
+.error-tip {
+    color: $color-error-primary;
+    font-size: $size-text-xs;
+    margin-top: 4px;
+    position: relative;
+    animation: fade-in 0.2s ease;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

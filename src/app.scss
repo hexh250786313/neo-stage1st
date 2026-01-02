@@ -1,6 +1,29 @@
+@forward './styles/global';
+
+/* h5 用的 */
+:root {
+    height: 100%;
+}
+
+/* 小程序用的 */
 page {
     height: 100%;
-    color: $blue;
+}
 
-    @include break-word;
+// stylelint-disable
+.taro_page {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+#app,
+html,
+body {
+    // 给一个没什么意义的样式
+    // 仅仅是为了定义一个样式以便 postcss-autoreset 可以插入全局样式
+    background-color: initial;
 }

@@ -1,7 +1,36 @@
 {
-    "red": "red",
-    // hello
-    "yellow": "yellow",
-    "green": "green",
-    "blue": "purple",
+    // 主题色
+    "color-brand-primary": "rgb(var(--color-brand-primary))",
+
+    // 错误色
+    "color-error-primary": "rgb(var(--color-error-primary))", // 主要错误颜色
+    "color-error-secondary": "rgb(var(--color-error-secondary))", // 次要错误颜色
+
+    // 文字颜色
+    "color-text-primary": "rgb(var(--color-text-primary))", // 主要文字
+    "color-text-secondary": "rgb(var(--color-text-secondary))", // 次要文字
+    "color-text-tertiary": "rgb(var(--color-text-tertiary))", // 辅助文字
+
+    // 背景色
+    "color-bg-primary": "rgb(var(--color-bg-primary))", // 默认背景色
+    "color-bg-secondary": "rgb(var(--color-bg-secondary))", // 次要背景色
+
+    // 相对色
+    "color-on": "rgb(var(--color-on))",
+    "color-off": "rgb(var(--color-off))",
+
+    // 间距大小
+    "size-space-xs": "4px",
+    "size-space-sm": "8px",
+    "size-space-md": "12px",
+    "size-space-lg": "24px",
+    "size-space-xl": "32px",
+
+    // 文字大小
+    "size-text-xs": "12px",
+    "size-text-sm": "14px",
+    "size-text-base": "16px",
+    "size-text-md": "20px",
+    "size-text-lg": "24px",
+    "size-text-xl": "32px",
 }

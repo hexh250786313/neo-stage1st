@@ -1,0 +1,11 @@
+// 覆盖小程序部分难看的样式
+
+// 自动填充的时候不要改变输入框背景色
+.weui-input:-webkit-autofill,
+.weui-input:-webkit-autofill:hover,
+.weui-input:-webkit-autofill:focus,
+.weui-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: inherit !important;
+    transition: background-color 5000s ease-in-out 0s;
+}

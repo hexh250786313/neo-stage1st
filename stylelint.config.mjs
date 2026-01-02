@@ -9,5 +9,7 @@ export default {
         'no-empty-source': null,
         // 允许不存在的标签
         'selector-type-no-unknown': null,
+        // 允许使用供应商前缀的属性
+        'property-no-vendor-prefix': null,
     },
 };

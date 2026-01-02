@@ -1,0 +1,19 @@
+// 这个文件的作用是为了转换 @tarojs/components 引入的组件无法自动转换 px -> rem
+// 所以额外写一些样式覆盖掉默认样式
+
+taro-input-core {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+taro-button-core.custom {
+    border-radius: 5px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 18px;
+
+    &::after {
+        border: 1px solid rgb(0 0 0 / 20%);
+        border-radius: 10px;
+    }
+}

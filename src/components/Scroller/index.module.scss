@@ -1,0 +1,14 @@
+.container {
+    height: 100%;
+    overflow: scroll;
+
+    /* Firefox */
+    scrollbar-width: none;
+
+    /* IE 10+ */
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
